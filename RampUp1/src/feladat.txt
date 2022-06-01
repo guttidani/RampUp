@@ -1,0 +1,65 @@
+Ramp-up 1.
+----------------------------
+- java 17.0.0 vagy feletti verzio
+- szedd le a maven-t allitsd be az env variable-ket majd utana teszteld le a konzolban, hogy mukodik-e: mvn parancs
+
+- Hozz letre egy uj maven projektet intellij-ben
+- dependency-nek tedd be a junit-ot
+- Hozz letre egy java class-t a kovetkezokkel
+	- Class nev: Car
+	valtozok:
+		- name
+		- type: sedan/coupe/cabrio -> enum legyen
+		- maxSpeed
+		- engine
+		- horsePower
+
+Hozz letre egy class-t:
+	- Class nev: TestData
+		tarold el a kovetkezo adatokat benne:
+			Audi, sedan, 250, 1.8, 150
+			Bmw, cabrio, 280, 3.0, 230
+			Dacia, sedan, 200, 1.2, 90
+			Lada, sedan, 160, 1.6, 90
+			Ferrari, coupe, 300, 4.0, 350
+			Opel, coupe, 250, 2.0, 180
+			Renault, sedan, 200, 1.4, 140
+
+
+Keszitsd a test package-ben egy uj class-t
+	- Class nev: Tests
+
+	- Keszitsd egy void metodust Test1 neven es tegyel ra @Test annotaciot
+	- ami megmondja a TestData-ban melyik a legnagyobb loerovel rendelkezo auto
+	- Irj assert-et ra az Assertions.assert felhasznalasaval, az expected ertek 350 legyen
+
+
+	- Keszitsd egy void metodust Test2 neven es tegyel ra @Test annotaciot
+	- ami kilistazza a TestData-ban melyik autok sedan tipusuak
+	- Irj assert-et ra az Assertions.assert felhasznalasaval, az expected ertek a listaban szereplo count legyen az az: 4
+
+
+	- Keszitsd egy void metodust Test3 neven es tegyel ra @Test annotaciot
+	- ami kigyujti a TestData-bol az 1.6 motornal nagyobb kobcentis autokat
+	- Irj assert-et ra az Assertions.assert felhasznalasaval,
+	    az expected ertek a kigyujtot lista alapjan ellenorizze le
+	    nincs-e kisebb vagy egyenlo erteku auto az 1.8 kobcentis autonal.
+
+	    A testdata-ból ki kell gyujteni listába az 1.6-nál nagyobb cm3- autokat,
+	    majd a listában ellenörizni, hogy nincs-e 1.8-asnál nagyobb
+
+-------------------------------------------
+
+	    A TestData-t alakitsd at json strukturara
+        Keress egy mvn library-t json parseolasra
+        Keszits egy class-t JsonParser neven
+
+        Keszits egy Setup metodust a Test osztalyban ami felolvassa a TestData-t
+        es felhasznalja az eddigi tesztekhez
+
+        Huzd be az slf4j-t a pom file-ba es hasznald logolasra class-on @Slf4j
+        utana a kodban log.info()
+
+        Hasznalj Builder-t a konstruktor es getter setter helyett
+
+        for ciklusokat ird at fluent foreach-re pl: testCars..forEach(.....)
